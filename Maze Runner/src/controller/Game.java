@@ -15,10 +15,12 @@ public class Game implements Runnable {
 	private final int width = 500;
 	private final int height = 500;
 	private Display display;
+	private KeyManager keyManager ;
 
 	// private final double width = ;
 	public Game() {
 		running = false;
+		keyManager  = new KeyManager();
 		
 	}
 
@@ -43,6 +45,7 @@ public class Game implements Runnable {
 	}
 	public void init() {
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 	}
 	private void tick() { // updates everything for the game (logic)
 
@@ -62,6 +65,7 @@ public class Game implements Runnable {
 		bufferStrategy.show();
 		g.dispose();
 	}
+	
 
 	@Override
 	public void run() {
