@@ -60,55 +60,58 @@ public class Game implements Runnable {
 			return;
 		}
 		g = bufferStrategy.getDrawGraphics();
+		// clear screen
+		g.clearRect(0, 0, width, height);
+		
+		// test code
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
+		
+		
 		bufferStrategy.show();
 		g.dispose();
 	}
 	
 
+	// limit how many times tick and render are called every single second so that it runs with the same speed on every computer 
 	@Override
 	public void run() {
 		init();
-		double target = 60.0;
-		double nsPerTick = 1000000000.0 / target;
+		int fps = 60; // frames per second a.k.a ticks per second a.k.a the number of times we want to call render() and tick() per second
+		double nsTimePerTick = 1000000000.0 / fps; // dividing 1000000000.0 nano second (1 second) by fps to get the time in nano second for one tick 
 		long lastTime = System.nanoTime();
-		long timer = System.currentTimeMillis();
 		double unprocessed = 0.0;
-		int fps = 0;
-		int tps = 0;
-		boolean canRender = false;
+		
+		// test code to check we're running 60 ticks per second 
+		long timer = 0;
+		int tps = 0; // ticks per second
 
 		while (running) {
 			long now = System.nanoTime();
-			unprocessed += (now - lastTime) / nsPerTick;
+			unprocessed += (now - lastTime) / nsTimePerTick; // the amount of time we have until we have to call render() and tick() methods again // each time we add the difference between now and lastTime we entered this method
+			
+			timer += now - lastTime;
+			
 			lastTime = now;
 
-			if (unprocessed >= 1.0) {
+			if (unprocessed >= 1.0) { // means that the difference between now and last time we rendered and ticked is equal or greater than nsTimePerTick				
 				tick();
+				render();
 				unprocessed--;
-				tps++;
-				canRender = true;
-			} else {
-				canRender = false;
-			}
+				tps++;	
+			} 
 			
 			
-			try {
+			/*try {
 				Thread.sleep(1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-			if (canRender) {
-				render();
-				fps++;
-			}
-			if (System.currentTimeMillis() - 1000 > timer) {
-				timer += 1000;
-				fps = 0;
+			*/
+			if (timer >= 1000000000) { // timer has passes another second 
+				System.out.println("ticks per second: " + tps);
 				tps = 0;
+				timer = 0;
 			}
 		}
 		stop();
