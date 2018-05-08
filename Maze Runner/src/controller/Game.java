@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import model.Assets;
 import view.Display;
 
 public class Game implements Runnable {
@@ -43,6 +44,7 @@ public class Game implements Runnable {
 	}
 	public void init() {
 		display = new Display(title, width, height);
+		Assets.init();
 	}
 	private void tick() { // updates everything for the game (logic)
 
@@ -63,7 +65,7 @@ public class Game implements Runnable {
 		// test code
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-		
+		g.drawImage(Assets.tree, 10, 10, null); g.drawImage(Assets.stone, 100, 10, null);  g.drawImage(Assets.path, 200, 10, null);
 		
 		bufferStrategy.show();
 		g.dispose();
