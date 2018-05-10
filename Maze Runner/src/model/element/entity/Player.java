@@ -1,11 +1,11 @@
-package model;
+package model.element.entity;
 
+import java.awt.List;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 
-import controller.Game;
+import model.Assets;
 
 public class Player extends Entity{
 	private static Player uniquePlayer = null;	
@@ -13,7 +13,7 @@ public class Player extends Entity{
 	private int velocity ;
 	private int health ;
 	private int score;
-	private List<Integer> bullets;
+	private ArrayList<Integer> bullets;
 	
 	public static Player getPlayer() {
 		if(uniquePlayer == null)
@@ -22,9 +22,9 @@ public class Player extends Entity{
 		
 	}
 	
-	private Player(Point point,BufferedImage img) {
+	private Player(Point point,BufferedImage bufferedImage) {
 		super(point, Assets.runner);
-		bullets = new ArrayList<>(6);
+		bullets = new ArrayList<Integer>(6);
 		health = 3;
 		velocity = 10;
 		score = 0;
@@ -34,8 +34,8 @@ public class Player extends Entity{
 
 	
 	public void tick() {
-		pt.x = velocity;
-		pt.y = velocity;
+		point.x = velocity;
+		point.y = velocity;
 	}
 	
 	public int getVelocity() {
@@ -62,13 +62,14 @@ public class Player extends Entity{
 		this.score = score;
 	}
 
-	public List<Integer> getBullets() {
+	public ArrayList<Integer> getBullets() {
 		return bullets;
 	}
 
-	public void setBullets(List<Integer> bullets) {
+	public void setBullets(ArrayList<Integer> bullets) {
 		this.bullets = bullets;
 	}
+
 	
 	
 	

@@ -1,4 +1,4 @@
-package model.tiles;
+package model.element.tile;
 
 import model.Assets;
 

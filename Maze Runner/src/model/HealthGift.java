@@ -3,7 +3,7 @@ package model;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-public class HealthGift extends Gift{
+/*public class HealthGift extends Gift{
 
 
 	
@@ -19,4 +19,4 @@ public class HealthGift extends Gift{
 
 	
 	
-}
+}*/

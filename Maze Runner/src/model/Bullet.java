@@ -1,8 +1,10 @@
 package model;
-
+/*
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import model.element.entity.Entity;
+/*
 public class Bullet extends Entity{
 
 	private int  vBullet;
@@ -26,4 +28,4 @@ public class Bullet extends Entity{
 		pt.y = vBullet;
 	}
 
-}
+}*/

@@ -1,8 +1,10 @@
 package model;
-
+/*
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import model.element.entity.Entity;
+/*
 public class Gift extends Entity{
 	
 		protected Player player;
@@ -12,4 +14,4 @@ public class Gift extends Entity{
 			player = Player.getPlayer();
 			
 		}
-}
+}*/

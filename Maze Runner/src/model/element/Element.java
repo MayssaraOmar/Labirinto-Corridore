@@ -1,4 +1,4 @@
-package model;
+package model.element;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -12,9 +12,4 @@ public interface Element {
 	public Point getPoint();
 	public void setPoint(Point point);
 
-
-
-
-	
-	
 }
