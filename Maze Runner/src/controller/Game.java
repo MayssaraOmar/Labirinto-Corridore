@@ -7,8 +7,6 @@ import java.awt.image.BufferStrategy;
 
 import model.Assets;
 import model.Maze;
-import model.tiles.Tile;
-import model.tiles.TilesFactory;
 import view.Display;
 
 public class Game implements Runnable {

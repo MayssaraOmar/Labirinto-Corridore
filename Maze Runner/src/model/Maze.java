@@ -1,22 +1,25 @@
 package model;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import model.tiles.PathTile;
-import model.tiles.StoneTile;
-import model.tiles.Tile;
-import model.tiles.TilesFactory;
+import model.element.Element;
+import model.element.tile.PathTile;
+import model.element.tile.Tile;
+import model.element.tile.TilesFactory;
+import model.element.ElementFactory;
 
 public class Maze {
 
 	private int MAZE_WIDTH, MAZE_HEIGHT;
 
-	private Tile[][] tiles;
 	private Tile[][] baseTile;
+	// private Tile[][] tiles;
 	TilesFactory tilesFactory = new TilesFactory();
+	private Element[][] elements;
 
 	public Maze(String path) {// gets initialized and called in gamestate
 		MAZE_HEIGHT = -1;
@@ -54,20 +57,21 @@ public class Maze {
 					MAZE_HEIGHT = Integer.parseInt(tokens[1]);
 					baseTile = new Tile[MAZE_HEIGHT][MAZE_WIDTH];
 					loadBaseTile();
-					tiles = new Tile[MAZE_HEIGHT][MAZE_WIDTH];
-
+					// tiles = new Tile[MAZE_HEIGHT][MAZE_WIDTH];
+					elements = new Element[MAZE_HEIGHT][MAZE_WIDTH];
 				}
 
 				else {
 					for (int i = 0; i < MAZE_WIDTH; i++) {
-						tiles[currentRow][i] = tilesFactory.getTile(Integer.parseInt(tokens[i]));
+						// tiles[currentRow][i] = tilesFactory.getTile(Integer.parseInt(tokens[i]));
 						// tiles[currentRow][i] = tilesFactory.getTile(0);
+						elements[currentRow][i] = ElementFactory.getElement(Integer.parseInt(tokens[i]));
 
 					}
 					currentRow++;
 				}
 			}
-			//tiles[20][20] = tilesFactory.getTile(2);
+			// tiles[20][20] = tilesFactory.getTile(2);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,17 +95,18 @@ public class Maze {
 	 */
 
 	public void render(Graphics g) {
-
 		for (int x = 0; x < MAZE_WIDTH; x++) {
 			for (int y = 0; y < MAZE_HEIGHT; y++) {
 				int i = (x - y) * Tile.TILEWIDTH / 2;
 				int j = (x + y) * Tile.TILEHEIGHT / 4;
 
 				i += 925;
-				j+=50;
+				j += 50;
 				int fx = i;
 				int fy = j;
-				baseTile[x][y].render(g, fx, fy);
+
+				baseTile[x][y].setPoint(new Point(fx, fy));
+				baseTile[x][y].render(g);
 			}
 		}
 
@@ -114,14 +119,16 @@ public class Maze {
 
 				// 800 and 100 are temporary offsets I apply to center the map.
 				i += 925;
-				j +=50;
+				j += 50;
 
 				int fx = i;//
 				int fy = j;//
-				if (!(tiles[x][y] instanceof PathTile)) {
+				if (!(elements[x][y] instanceof PathTile)) {
 					fy -= Tile.TILEHEIGHT / 2;
+					elements[x][y].setPoint(new Point(fx, fy));
+					elements[x][y].render(g);
 
-					tiles[x][y].render(g, fx, fy);
+					// tiles[x][y].render(g, fx, fy);
 
 				}
 

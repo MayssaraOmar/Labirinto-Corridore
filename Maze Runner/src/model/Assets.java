@@ -3,7 +3,7 @@ package model;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import model.tiles.TilesSpriteSheet;
+import model.element.tile.TilesSpriteSheet;
 
 public class Assets {
 	
