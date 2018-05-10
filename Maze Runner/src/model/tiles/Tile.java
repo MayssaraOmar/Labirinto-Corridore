@@ -7,16 +7,18 @@ import model.Assets;
 
 public  class Tile {
 	
-	
-	
-	public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
+
+	//public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
+
+	//public static final int TILEWIDTH = 112, TILEHEIGHT = 172;
+	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+
 	private BufferedImage texture;
 	
 	public Tile(BufferedImage texture) {
 		System.out.println("Const");
 		this.texture = texture;
-		System.out.println("texture  "+this.texture);
-		
+		System.out.println("texture  "+this.texture);	
 	}
 	
 	public void tick() {
@@ -24,7 +26,10 @@ public  class Tile {
 	}
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(texture, x, y, TILEWIDTH , TILEHEIGHT,  null);
-		//g.drawImage(Assets.stone, x, y, null);
+
+		//g.drawImage(Assets.stone, x, y, null);		
+		//g.drawImage(Assets.tree, x, y, null);
+
 	}
 	
 
