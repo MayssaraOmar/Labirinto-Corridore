@@ -10,7 +10,7 @@ public class Assets {
 	//private static final int width = 72, height = 72; 
 	//private static final int width = 112, height = 127; 
 	private static final int width = 112, height = 128; 
-	public static BufferedImage runner, stone, tree, path, gift, bomb, armor, gun, bullet;
+	public static BufferedImage runner, stone, tree, path, gift, bomb, armor, gun, bullet,heart,money;
 	public static void init() {
 		/*TilesSpriteSheet tilesSpriteSheet = new TilesSpriteSheet(ImageLoader.loadImage("/tiles_spritesheet.png"));
 		stone = tilesSpriteSheet.crop(1*width, 4*height, width+3, height);
