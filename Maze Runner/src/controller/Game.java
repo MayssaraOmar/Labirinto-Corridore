@@ -19,7 +19,7 @@ public class Game implements Runnable {
 	private final int width = 2160;
 	private final int height = 2160;
 	private Display display;
-	private KeyManager keyManager ;
+	//private KeyManager keyManager ;
 	private State gameState;
 	//private TilesFactory t= new TilesFactory();
 	//private Tile tt = t.getTile(0);
@@ -27,7 +27,7 @@ public class Game implements Runnable {
 	// private final double width = ;
 	public Game() {
 		running = false;
-		keyManager  = new KeyManager();
+		//keyManager  = new KeyManager();
 		
 	}
 
@@ -56,7 +56,7 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		Assets.init();
 		gameState = new GameState(this); 
-		display.getFrame().addKeyListener(keyManager);
+		//display.getFrame().addKeyListener(keyManager);
 
 	}
 	private void tick() { // updates everything for the game (logic)
@@ -76,11 +76,15 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//tt.render(g, 0, 0);
 		// test code
+
 		gameState.render(g);
+
+		//g.drawImage(Assets.path, 100, 10, null);  		g.drawImage(Assets.stone, 400, 10, null);  
+
 
 		/*g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-		g.drawImage(Assets.tree, 10, 10, null); g.drawImage(Assets.stone, 100, 10, null);  
+		g.drawImage(Assets.tree, 10, 10, null); 
 		g.drawImage(Assets.path, 200, 10, null);
 		*/
 		bufferStrategy.show();
