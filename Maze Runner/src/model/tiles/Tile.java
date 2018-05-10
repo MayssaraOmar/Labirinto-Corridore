@@ -4,12 +4,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import model.Assets;
+import model.Element;
 
 public  class Tile {
 	
 	
 	
 	//public static final int TILEWIDTH = 112, TILEHEIGHT = 172;
+	//public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
 	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 	private BufferedImage texture;
 	
@@ -19,9 +21,7 @@ public  class Tile {
 		System.out.println("texture  "+this.texture);	
 	}
 	
-	public void tick() {
-		
-	}
+	
 	public void render(Graphics g, int x, int y) {
 		g.drawImage(texture, x, y, TILEWIDTH , TILEHEIGHT,  null);
 		
