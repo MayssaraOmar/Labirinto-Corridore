@@ -1,10 +1,16 @@
 package model.tiles;
 
+import java.awt.image.BufferedImage;
+
 import model.Assets;
 
 public class PathTile extends Tile{
 	public PathTile() {
-		super(Assets.stone);
+		
+		super(Assets.path);
+		
+		System.out.println(Assets.path+" path");
+
 	}
 
 	@Override

@@ -14,6 +14,8 @@ public class Display {
 		this.title = title;
 		this.width = width;
 		this.height = height;
+		
+				
 		initialize();
 	}
 
@@ -22,7 +24,7 @@ public class Display {
 	 */
 	private void initialize() {
 		frame = new JFrame(title);
-		frame.setSize(500, 500);
+		frame.setSize(2160, 2160);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

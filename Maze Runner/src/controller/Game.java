@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import model.Assets;
+import model.Maze;
+import model.tiles.Tile;
+import model.tiles.TilesFactory;
 import view.Display;
 
 public class Game implements Runnable {
@@ -13,11 +16,14 @@ public class Game implements Runnable {
 	private final String title = "Maze Runner";
 	private Thread thread;
 	private boolean running;
-	private final int width = 500;
-	private final int height = 500;
+	private final int width = 2160;
+	private final int height = 2160;
 	private Display display;
 	private KeyManager keyManager ;
-
+	private State gameState;
+	//private TilesFactory t= new TilesFactory();
+	//private Tile tt = t.getTile(0);
+	
 	// private final double width = ;
 	public Game() {
 		running = false;
@@ -31,6 +37,8 @@ public class Game implements Runnable {
 		running = true; // the game will be running now that we're making a new thread
 		thread = new Thread(this); // make a new thread which makes this part of the program (this class) runs separately from the rest of the program 
 		thread.start(); // start starts the thread and calls the run method bellow
+
+		
 	}
 
 	public synchronized void stop() { //synchronized is used whenever we directly work with threads 
@@ -46,14 +54,13 @@ public class Game implements Runnable {
 	}
 	public void init() {
 		display = new Display(title, width, height);
-
 		Assets.init();
-
+		gameState = new GameState(this); 
 		display.getFrame().addKeyListener(keyManager);
 
 	}
 	private void tick() { // updates everything for the game (logic)
-
+		gameState.tick();
 	}
 
 	private void render() { // render the graphics for the game, redraw the game screen  
@@ -67,12 +74,15 @@ public class Game implements Runnable {
 		g = bufferStrategy.getDrawGraphics();
 		// clear screen
 		g.clearRect(0, 0, width, height);
-		
+		//tt.render(g, 0, 0);
 		// test code
-		g.setColor(Color.BLACK);
+		gameState.render(g);
+
+		/*g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-		g.drawImage(Assets.tree, 10, 10, null); g.drawImage(Assets.stone, 100, 10, null);  g.drawImage(Assets.path, 200, 10, null);
-		
+		g.drawImage(Assets.tree, 10, 10, null); g.drawImage(Assets.stone, 100, 10, null);  
+		g.drawImage(Assets.path, 200, 10, null);
+		*/
 		bufferStrategy.show();
 		g.dispose();
 	}
@@ -82,6 +92,7 @@ public class Game implements Runnable {
 	@Override
 	public void run() {
 		init();
+
 		int fps = 60; // frames per second a.k.a ticks per second a.k.a the number of times we want to call render() and tick() per second
 		double nsTimePerTick = 1000000000.0 / fps; // dividing 1000000000.0 nano second (1 second) by fps to get the time in nano second for one tick 
 		long lastTime = System.nanoTime();

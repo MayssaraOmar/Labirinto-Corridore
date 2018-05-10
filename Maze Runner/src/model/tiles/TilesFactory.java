@@ -1,11 +1,13 @@
 package model.tiles;
 
+import model.Assets;
+
 public class TilesFactory {
 	
 	
 	public Tile getTile(int type) {
 		
-		if(type == 0)
+		if(type == 0) 
 			return new PathTile();
 		if(type == 1)
 			return new StoneTile();
@@ -13,5 +15,8 @@ public class TilesFactory {
 			return new TreeTile();
 		
 		return new PathTile(); // default tile
-	}
+	
+}
+	
+	
 }
