@@ -9,7 +9,7 @@ public  class Tile {
 	
 	
 	
-	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+	public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
 	private BufferedImage texture;
 	
 	public Tile(BufferedImage texture) {
@@ -23,7 +23,7 @@ public  class Tile {
 		
 	}
 	public void render(Graphics g, int x, int y) {
-		g.drawImage(texture, x, y, /*TILEWIDTH , TILEHEIGHT,*/  null);
+		g.drawImage(texture, x, y, TILEWIDTH , TILEHEIGHT,  null);
 		//g.drawImage(Assets.stone, x, y, null);
 	}
 	

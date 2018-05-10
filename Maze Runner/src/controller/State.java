@@ -6,7 +6,7 @@ public abstract class State {
 	
 	protected Game game;
 	public State (Game game) {
-		System.out.println("state game");
+		
 		this.game=game;
 		
 	};
