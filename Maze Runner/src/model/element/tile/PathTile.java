@@ -7,7 +7,7 @@ import model.Assets;
 public class PathTile extends Tile{
 	public PathTile() {
 		
-		super(Assets.path,0);
+		super(Assets.path);
 		
 		//System.out.println(Assets.path+" path");
 
