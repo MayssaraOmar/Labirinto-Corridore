@@ -8,9 +8,9 @@ public class Armor extends Decorator{
 	
 	private Runner player;
 	
-		public Armor(Point p,Runner runner) {
+		public Armor(Point p) {
 			super( Assets.armor,5,5,p);
-			player = runner;
+			player = Runner.getRunner(null);
 		}
 		
 		public void doAction() {

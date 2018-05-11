@@ -17,6 +17,7 @@ public class ElementFactory {
 		else if (type == 2)
 			return (Element) new TreeTile(p);
 		
+		
 		else
 			return (Element) new PathTile(p); // default tile
 
