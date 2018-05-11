@@ -10,6 +10,7 @@ import java.util.Comparator;
 
 import controller.GameState;
 import model.element.Element;
+import model.element.tile.PathTile;
 import model.element.tile.Tile;
 import model.element.ElementFactory;
 
@@ -83,7 +84,7 @@ public class Maze {
 
 	}
 
-	public Point toIso(int x, int y) {
+	public static Point toIso(int x, int y) {
 
 		int i = (x - y) * Tile.TILEWIDTH / 2;
 		int j = (x + y) * Tile.TILEHEIGHT / 4;
@@ -96,6 +97,14 @@ public class Maze {
 		return new Point(i, j);
 
 	}
+	public static Point toGrid(int x, int y){
+
+	    x-=offsetX;
+	    y-=offsetY;
+	    int i = ( x / ( Tile.TILEWIDTH / 2 ) + y / ( Tile.TILEHEIGHT / 4 )) / 2;
+	    int j = ( y / ( Tile.TILEHEIGHT / 4 ) - ( x / ( Tile.TILEWIDTH / 2 ))) / 2;
+	    return new Point(i,j);
+	  }
 
 	public void tick() {
 		for (int x = 0; x < base.size(); x++) {
@@ -122,13 +131,14 @@ public class Maze {
 	}
 
 	// working if there was no entity
-	/*
-	 * public Tile getTile(int x, int y) { if (x < 0 || y < 0 || x >= MAZE_WIDTH ||
-	 * y >= MAZE_HEIGHT) { return Tile.pathTile; } Tile t = (Tile)
-	 * GameState.elements[x][y]; if (t == null) return Tile.pathTile; return t;
-	 * 
-	 * }
-	 */
+	
+	  /*public Tile getTile(int x, int y) { 
+		if (x < 0 || y < 0 || x >= MAZE_WIDTH || y >= MAZE_HEIGHT) { return new PathTile(); }
+		Tile t = (Tile);
+	  GameState.elements; if (t == null) return Tile.pathTile; return t;
+	  
+	  }*/
+	 
 
 	
 }

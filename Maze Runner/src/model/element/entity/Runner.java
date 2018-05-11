@@ -1,6 +1,5 @@
 package model.element.entity;
 
-import java.awt.List;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.ArrayList;
 import controller.Game;
 import model.Assets;
 import model.Maze;
-import model.element.tile.Tile;
 
 public class Runner extends Entity{
 	private static Runner uniqueRunner = null;	
@@ -35,7 +33,7 @@ public class Runner extends Entity{
 		//maze = Maze.getMaze("maze.txt");
 		bullets = new ArrayList<Integer>(6);
 		health = 3;
-		velocity = 10;
+		velocity = 1;
 		score = 0;
 		width = 50;
 		height = 50;
@@ -46,33 +44,39 @@ public class Runner extends Entity{
 	}	
 	
 	public void move() {
-		moveX();
-		moveY();
+		if(!checkEntityCollisions(xMove, 0))
+			moveX();
+		if(!checkEntityCollisions(0, yMove))
+			moveY();
 	}
 	
 	public void moveX() {
-		
-		if(xMove > 0) {
-			//int tx =  (point.x + xMove + bounds.x+bounds.width)/Tile.TILEWIDTH;
-			/*if(!collisionWithTile(tx,( point.y+bounds.y)/Tile.TILEHEIGHT) && !collisionWithTile(tx,( point.y+bounds.y+bounds.height)/Tile.TILEHEIGHT)) {
+		Point p = Maze.toGrid(point.x, point.y);
+		/*if(xMove > 0) {
+			int tx =  (p.x + xMove + getBounds().x+getBounds().width)/Tile.TILEWIDTH;
+			if(!collisionWithTile(tx,( point.y+bounds.y)/Tile.TILEHEIGHT) && !collisionWithTile(tx,( point.y+bounds.y+bounds.height)/Tile.TILEHEIGHT)) {
 					point.x += xMove;
-				}*/
-			//point.x += xMove;
+				}
+			p.x += xMove;
 			
 		}else if(xMove < 0){System.out.println("shaml");
 			
-		}
+		}*/
 		
-		
-		point.x += xMove;
+		p.x += xMove;
+		setPoint(Maze.toIso(p.x,p.y));
 	}
 	
 	public void moveY() {
-		point.y += yMove;
+		//point.y += yMove;
+		Point p = Maze.toGrid(point.x, point.y);
+		p.y += yMove;
+		setPoint(Maze.toIso(p.x,p.y));
 	}
 	
 	/*private boolean collisionWithTile(int x,int y) {
-		return maze.getTile(x, y).isSolid();
+		
+		//return maze.getTile(x, y).isSolid();
 	}*/
 	
 	public void tick() {
@@ -90,22 +94,22 @@ public class Runner extends Entity{
 	
 		if(Game.getKeyManager().up) {			
 			yMove -= velocity;
-			xMove += velocity;
+			//xMove += velocity;
 		}
 			
 		else if(Game.getKeyManager().down) {
 			yMove += velocity;
-			xMove -= velocity;
+			//xMove -= velocity;
 		}
 			
 		else if(Game.getKeyManager().left) {
 			xMove -= velocity;
-			yMove -= velocity;
+			//yMove -= velocity;
 		}
 			
 		else if(Game.getKeyManager().right) {
 			xMove += velocity;
-			yMove += velocity;
+			//yMove += velocity;
 			
 		}
 	}

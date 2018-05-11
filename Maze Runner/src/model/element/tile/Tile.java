@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 
 import model.element.Element;
 
-public  class Tile implements Element{
+public  class Tile extends Element{
 	
 	
 	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
 	private BufferedImage texture;
-	protected Point point;
-	protected int id;
+	//protected Point point;
+	//protected int id;
 	
 	public Tile(BufferedImage texture) {
 		this.texture = texture;
