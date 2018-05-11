@@ -9,9 +9,7 @@ public class PathTile extends Tile{
 		
 		super(Assets.path,0);
 		
-		System.out.println(Assets.path+" path");
-
-	}
+			}
 
 	@Override
 	public boolean isSolid() {

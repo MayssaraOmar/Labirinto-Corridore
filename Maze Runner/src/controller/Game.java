@@ -80,13 +80,13 @@ public class Game implements Runnable {
 		gameState.render(g);
 		
 		//g.drawImage(Assets.runner, 100, 10, null);  
-		//g.drawImage(Assets.stone, 400, 10, null);  
+		/*g.drawImage(Assets.stone, 400, 10, null);  
 
-
+		g.drawImage(Assets.tree, 10, 10, null); 
+		g.drawImage(Assets.path, 200, 10, null);*/
 		/*g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-		g.drawImage(Assets.tree, 10, 10, null); 
-		g.drawImage(Assets.path, 200, 10, null);
+		
 		*/
 		bufferStrategy.show();
 		g.dispose();

@@ -13,7 +13,7 @@ public  class Tile implements Element{
 	public static Tile treeTile = new TreeTile();
 	public static Tile stoneTile = new StoneTile();
 	
-	public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
+	public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
 	private BufferedImage texture;
 	protected Point point;
 	protected int id;

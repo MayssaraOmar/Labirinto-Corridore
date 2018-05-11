@@ -120,6 +120,17 @@ public class Maze {
 				
 	public void render(Graphics g) {
 
+
+		for(int i=0; i<MAZE_HEIGHT; i++) { 
+			for(int j=0; j<MAZE_WIDTH; j++) {
+				elements[i][j].setPoint(new Point(i*Tile.TILEWIDTH,j*Tile.TILEHEIGHT ));
+				
+				elements[i][j].render(g); 
+				elements[i][j].tick();
+			}
+		}
+		
+	/*	
 		for (int x = 0; x < MAZE_WIDTH; x++) {
 			for (int y = 0; y < MAZE_HEIGHT; y++) {
 				int i = (x - y) * Tile.TILEWIDTH / 2;
@@ -137,11 +148,10 @@ public class Maze {
 
 			}
 		}
- 
-		for (int x = 0; x < MAZE_WIDTH; x++) {
+ */
+	/*	for (int x = 0; x < MAZE_WIDTH; x++) {
 			for (int y = 0; y < MAZE_HEIGHT; y++) {
  
-
 				// for (int y = MAZE_HEIGHT - 1; y >= 0; y--) {
 				int i = (x - y) * Tile.TILEWIDTH / 2;
 				int j = (x + y) * Tile.TILEHEIGHT / 4;
@@ -151,19 +161,18 @@ public class Maze {
 				i += 925;
 				j += 50;
 
-
 				int fx = i;//
 				int fy = j;//
 				if (!(elements[x][y] instanceof PathTile)) {
 					fy -= Tile.TILEHEIGHT / 2;
 					elements[x][y].setPoint(new Point(fx, fy));
+					elements[x][y].tick();
 					elements[x][y].render(g);
-
 					// tiles[x][y].render(g, fx, fy);
 
 				}
 
 			}
-		}
+		}*/
  	}
 }

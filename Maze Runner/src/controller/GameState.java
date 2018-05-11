@@ -15,7 +15,7 @@ public class GameState extends State{
 	
 	public GameState(Game game) {
 		super(game);
-		Point p = new Point(925,50-Tile.TILEHEIGHT/2);		
+		Point p = new Point(2,28);		
 		maze = Maze.getMaze("maze.txt");
 		player = Player.getPlayer(game,p);
 		
