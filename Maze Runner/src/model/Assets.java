@@ -5,9 +5,7 @@ import java.awt.image.BufferedImage;
 
 import model.element.tile.TilesSpriteSheet;
 
-public class Assets {
-	
-	
+public class Assets {	
 	
 	//private static final int width = 72, height = 72; 
  	//private static final int width = 112, height = 127; 

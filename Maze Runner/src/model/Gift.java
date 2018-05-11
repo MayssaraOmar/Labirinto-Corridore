@@ -1,17 +1,24 @@
 package model;
-/*
+
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import model.element.entity.Entity;
-/*
+import model.element.entity.Runner;
+
 public class Gift extends Entity{
 	
-		protected Player player;
+		protected Runner player;
 		
 		public Gift(Point p, BufferedImage img) {
-			super(p, img);
-			player = Player.getPlayer();
+			super(img,10,10, p);
+			player = Runner.getRunner(null);
 			
 		}
-}*/
+
+		@Override
+		public void tick() {
+			// TODO Auto-generated method stub
+			
+		}
+}

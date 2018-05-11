@@ -84,8 +84,7 @@ public void moveY() {
 			point.y += yMove;
 		}	else {
 				//System.out.println("hna right");	
-			}
-		
+			}		
 	}else if(yMove < 0){		
 		int ty = (int) (point.y + yMove+bounds.height)/Tile.TILEHEIGHT;
 		if(!collisionWithTile((int)( point.x+bounds.x)/Tile.TILEHEIGHT,ty) && !collisionWithTile((int)( point.x+bounds.x+bounds.width)/Tile.TILEWIDTH,ty)) {
