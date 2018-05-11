@@ -12,6 +12,7 @@ import model.element.ElementFactory;
 
 public class Maze {
 
+	private static Maze uniqueMaze = null;
 	private int MAZE_WIDTH, MAZE_HEIGHT;
 
 	private Tile[][] baseTile;
@@ -19,7 +20,14 @@ public class Maze {
 	TilesFactory tilesFactory = new TilesFactory();
 	private Element[][] elements;
 
- 	public Maze(String path) {// gets initialized and called in gamestate
+	public static Maze getMaze(String path) {
+		if(uniqueMaze == null) {
+			uniqueMaze = new Maze(path);
+		}
+		return uniqueMaze;
+	}
+	
+ 	private Maze(String path) {// gets initialized and called in gamestate
  		MAZE_HEIGHT = -1;
  		MAZE_WIDTH = -1;
  		loadMaze(path);	
@@ -84,8 +92,17 @@ public class Maze {
  
  	}
  
-
-
+//working if there was no entity
+ 	public Tile getTile(int x,int y) {
+ 		if(x<0 || y<0 || x>=MAZE_WIDTH || y>= MAZE_HEIGHT) {
+ 			return Tile.pathTile; 
+ 		}
+ 		Tile t = (Tile) elements[x][y];
+ 		if(t == null)
+ 			return Tile.pathTile;
+ 		return t;
+ 		
+ 	}
 
 	/*
 	 * public void render(Graphics g) {

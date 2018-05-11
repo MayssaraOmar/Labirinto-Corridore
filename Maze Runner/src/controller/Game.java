@@ -17,7 +17,7 @@ public class Game implements Runnable {
 	private final int width = 2160;
 	private final int height = 2160;
 	private Display display;
-	//private KeyManager keyManager ;
+	private KeyManager keyManager ;
 	private State gameState;
 	//private TilesFactory t= new TilesFactory();
 	//private Tile tt = t.getTile(0);
@@ -25,7 +25,7 @@ public class Game implements Runnable {
 	// private final double width = ;
 	public Game() {
 		running = false;
-		//keyManager  = new KeyManager();
+		keyManager  = new KeyManager();
 		
 	}
 
@@ -53,11 +53,13 @@ public class Game implements Runnable {
 	public void init() {
 		display = new Display(title, width, height);
 		Assets.init();
+		display.getFrame().addKeyListener(keyManager);
 		gameState = new GameState(this); 
-		//display.getFrame().addKeyListener(keyManager);
+		
 
 	}
 	private void tick() { // updates everything for the game (logic)
+		keyManager.tick();
 		gameState.tick();
 	}
 
@@ -76,8 +78,9 @@ public class Game implements Runnable {
 		// test code
 
 		gameState.render(g);
-
-		//g.drawImage(Assets.path, 100, 10, null);  		g.drawImage(Assets.stone, 400, 10, null);  
+		
+		//g.drawImage(Assets.runner, 100, 10, null);  
+		//g.drawImage(Assets.stone, 400, 10, null);  
 
 
 		/*g.setColor(Color.BLACK);
@@ -94,7 +97,7 @@ public class Game implements Runnable {
 	@Override
 	public void run() {
 		init();
-
+		
 		int fps = 60; // frames per second a.k.a ticks per second a.k.a the number of times we want to call render() and tick() per second
 		double nsTimePerTick = 1000000000.0 / fps; // dividing 1000000000.0 nano second (1 second) by fps to get the time in nano second for one tick 
 		long lastTime = System.nanoTime();
@@ -135,6 +138,11 @@ public class Game implements Runnable {
 		stop();
 	}
 
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+
+	
 	
 
 }
