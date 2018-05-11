@@ -1,11 +1,13 @@
 package model.element.tile;
 
+import java.awt.Point;
+
 import model.Assets;
 
 public class StoneTile extends Tile {
 
-	public StoneTile() {
-		super(Assets.stone,1);
+	public StoneTile(Point p) {
+		super(Assets.stone,p);
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public abstract class Entity implements Element {
 	protected Rectangle bounds;
 	protected int width,height;
 
-	public Entity(Point point, BufferedImage bufferedImage) {
+	public Entity(BufferedImage bufferedImage,int width,int height,Point point) {
 		this.bufferedImage = bufferedImage;
 		this.point = point;
 		//mmkn n7dd width w height l kol entity seperately

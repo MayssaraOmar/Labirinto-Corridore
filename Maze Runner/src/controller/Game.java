@@ -17,7 +17,7 @@ public class Game implements Runnable {
 	private final int width = 2160;
 	private final int height = 2160;
 	private Display display;
-	private KeyManager keyManager ;
+	private static KeyManager keyManager ;
 	private State gameState;
 	//private TilesFactory t= new TilesFactory();
 	//private Tile tt = t.getTile(0);
@@ -130,7 +130,7 @@ public class Game implements Runnable {
 			}
 			*/
 			if (timer >= 1000000000) { // timer has passes another second 
-				System.out.println("ticks per second: " + tps);
+				//System.out.println("ticks per second: " + tps);
 				tps = 0;
 				timer = 0;
 			}
@@ -138,7 +138,7 @@ public class Game implements Runnable {
 		stop();
 	}
 
-	public KeyManager getKeyManager() {
+	public static KeyManager getKeyManager() {
 		return keyManager;
 	}
 

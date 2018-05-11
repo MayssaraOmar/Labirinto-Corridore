@@ -8,20 +8,15 @@ import model.element.Element;
 
 public  class Tile implements Element{
 	
-	public static Tile[] tiles = new Tile[20];
-	public static Tile pathTile = new PathTile();
-	public static Tile treeTile = new TreeTile();
-	public static Tile stoneTile = new StoneTile();
 	
 	public static final int TILEWIDTH = 25, TILEHEIGHT = 25;
 	private BufferedImage texture;
 	protected Point point;
 	protected int id;
 	
-	public Tile(BufferedImage texture,int ID) {
+	public Tile(BufferedImage texture,Point point) {
 		this.texture = texture;
-		id = ID;
-		tiles[id] = this;
+		this.point = point;
 	}
 	
 	public void tick() {
@@ -44,7 +39,7 @@ public  class Tile implements Element{
 	@Override
 	public Point getPoint() {
 		// TODO Auto-generated method stub
-		return null;
+		return point;
 	}
 
 	@Override

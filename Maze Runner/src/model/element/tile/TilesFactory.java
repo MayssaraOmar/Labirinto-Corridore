@@ -3,7 +3,7 @@ package model.element.tile;
 
 public class TilesFactory {
 	
-	
+	/*
 	public Tile getTile(int type) {
 		
 		if(type == 0) 
@@ -17,5 +17,5 @@ public class TilesFactory {
 	
 }
 	
-	
+*/	
 }
