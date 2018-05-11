@@ -4,7 +4,7 @@ import model.Assets;
 
 public class TreeTile extends Tile{
 	public TreeTile() {
-		super(Assets.tree);
+		super(Assets.tree,2);
 	}
 
 	@Override

@@ -1,8 +1,8 @@
 package model.element;
 
+import model.element.entity.Runner;
 import model.element.tile.PathTile;
 import model.element.tile.StoneTile;
-import model.element.tile.Tile;
 import model.element.tile.TreeTile;
 
 public class ElementFactory {
@@ -15,6 +15,8 @@ public class ElementFactory {
 			return new StoneTile();
 		if (type == 2)
 			return new TreeTile();
+		if (type == 3)
+			return Runner.getRunner();
 
 		return new PathTile(); // default tile
 

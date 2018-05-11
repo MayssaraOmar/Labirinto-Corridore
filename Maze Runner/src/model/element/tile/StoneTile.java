@@ -5,7 +5,7 @@ import model.Assets;
 public class StoneTile extends Tile {
 
 	public StoneTile() {
-		super(Assets.stone);
+		super(Assets.stone,1);
 	}
 
 	@Override
