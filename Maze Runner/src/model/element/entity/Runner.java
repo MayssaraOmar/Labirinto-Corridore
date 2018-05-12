@@ -124,7 +124,7 @@ public class Runner extends Entity {
 		// System.out.println("GET MOOVE\n");
 		xMove = 0;
 		yMove = 0;
-
+		
 		if (Game.getKeyManager().up) {
 			xMove -= velocity;
 		}
