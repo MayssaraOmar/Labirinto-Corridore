@@ -20,10 +20,6 @@ public class Game implements Runnable {
 	private static KeyManager keyManager ;
 	private State gameState;
 	
-	//private TilesFactory t= new TilesFactory();
-	//private Tile tt = t.getTile(0);
-	
-	// private final double width = ;
 	public Game() {
 		running = false;
 		keyManager  = new KeyManager();

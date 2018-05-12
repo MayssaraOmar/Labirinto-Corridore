@@ -23,6 +23,8 @@ public class Assets {
 		tree = tilesSpriteSheet.crop(width,11*height, width, height);
 		path = tilesSpriteSheet.crop(3*width, 0*height, width, height);
 		runner = tilesSpriteSheet.crop(3*width, 1*height, width, height);
+		
+		
 	}
 
 }

@@ -12,6 +12,7 @@ public class ArmorGift extends Gift{
 		public ArmorGift() {
 			super( Assets.armor);
 			playerState = new ArmorOnPlayerState(player);
+			
 		}
 		
 		public void doAction() {

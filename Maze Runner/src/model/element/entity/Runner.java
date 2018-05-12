@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import controller.ArmorOnPlayerState;
 import controller.DefaultPlayerState;
 import controller.Game;
 import controller.PlayerState;
@@ -17,28 +18,27 @@ import model.element.Element;
 
 public class Runner extends Entity{
 	private static Runner uniqueRunner = null;	
-	//n7ot-ha tb3 state l health
-	//private Game game; 
-	//private Maze maze;
 	private int velocity ;
 	private int health ;
 	private int score;
 	private int xMove,yMove;
 	private int bullets;
-	private PlayerState playerState;
+	private PlayerState playerState,defaultState;
+	
 	
 	// singleton DP
 	public static Runner getRunner() {
 		if(uniqueRunner == null)
-			uniqueRunner = new Runner(Assets.runner);
+			uniqueRunner = new Runner();
 		return uniqueRunner;
 		
 	}
 	
-	protected Runner(BufferedImage bufferedImage) {
-		super(Assets.runner);
-		//this.game = game;
-		//maze = Maze.getMaze("maze.txt");
+	protected Runner() {
+		super(Assets.runner);	
+	
+		defaultState = new DefaultPlayerState(this);
+		playerState = defaultState;		
 		bullets = 6;
 		health = 3;
 		velocity = 1;
@@ -47,10 +47,15 @@ public class Runner extends Entity{
 		height = 50;
 		xMove = 0;
 		yMove = 0;
-		playerState = new DefaultPlayerState(this);
+		
 	//	RunnerImg = l mfrood n-get l image mn l spritesheet ely hn7mlha mn l game
 		
-	}	
+	}		
+	public void changeState(PlayerState state) {
+		playerState = state;
+	}
+	
+	
 	
 	public void move() {
 		Element collided ;
@@ -185,7 +190,13 @@ public class Runner extends Entity{
 		this.bullets = bullets;
 	}
 
-	
+	public PlayerState getPlayerState() {
+		return playerState;
+	}
+
+	public void setPlayerState(PlayerState playerState) {
+		this.playerState = playerState;
+	}
 	
 	
 }

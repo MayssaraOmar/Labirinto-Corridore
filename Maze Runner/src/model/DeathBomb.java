@@ -16,7 +16,8 @@ public class DeathBomb extends Bomb{
 	}
 	
 public void doAction() {
-		player.setHealth(0);
+		//player.setHealth(0);
+		player.getPlayerState().hitBomb(this);
 	}
 
 }
