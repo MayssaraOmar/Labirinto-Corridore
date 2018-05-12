@@ -3,14 +3,14 @@ package model;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-/*ublic class BulletGift extends Gift{
+public class BulletGift extends Gift{
 
-	public BulletGift(Point p) {
-		super(p, Assets.bullet);
+	public BulletGift() {
+		super( Assets.bullet);
 	}
 
 	public void doAction() {
-		player.getBullets().add(1);
+		player.setBullets(player.getBullets()+1);
 	}
 	
-}*/
+}

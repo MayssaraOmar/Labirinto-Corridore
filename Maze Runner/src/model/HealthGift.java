@@ -3,12 +3,12 @@ package model;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-/*public class HealthGift extends Gift{
+public class HealthGift extends Gift{
 
 
 	
-	public HealthGift(Point p) {
-		super(p,Assets.heart);
+	public HealthGift() {
+		super(Assets.heart);
 		
 				
 	}
@@ -19,4 +19,4 @@ import java.awt.image.BufferedImage;
 
 	
 	
-}*/
+}

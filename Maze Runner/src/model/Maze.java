@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -125,6 +126,9 @@ public class Maze {
 		}
 
 		for (int x = 0; x < GameState.elements.size(); x++) {
+		
+			
+			
 			GameState.elements.get(x).render(g);
 		}
 

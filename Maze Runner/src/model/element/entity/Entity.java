@@ -23,11 +23,14 @@ public abstract class Entity extends Element {
 	
 	@Override
 	public void render(Graphics g) {
+							
 		
-		g.drawImage(bufferedImage, point.x, point.y,Tile.TILEWIDTH,Tile.TILEHEIGHT, null);
+			g.drawImage(bufferedImage, point.x, point.y,Tile.TILEWIDTH,Tile.TILEHEIGHT, null);	
+				
 		
 		g.setColor(Color.BLUE);
 		g.fillRect(point.x , point.y  , width, height);
+		
 	}
 	@Override
 	public Point getPoint() {

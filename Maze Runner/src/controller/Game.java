@@ -19,6 +19,7 @@ public class Game implements Runnable {
 	private Display display;
 	private static KeyManager keyManager ;
 	private State gameState;
+	
 	//private TilesFactory t= new TilesFactory();
 	//private Tile tt = t.getTile(0);
 	

@@ -1,15 +1,22 @@
 package model;
 
-import java.awt.Point;
+import com.sun.media.jfxmedia.events.PlayerStateEvent.PlayerState;
 
-/*public class ArmorGift extends Gift{
+import controller.ArmorOnPlayerState;
+import controller.GameState;
+
+public class ArmorGift extends Gift{
 	
-		public ArmorGift(Point p) {
-			super(p, Assets.armor);
+	private ArmorOnPlayerState playerState;
+	
+		public ArmorGift() {
+			super( Assets.armor);
+			playerState = new ArmorOnPlayerState(player);
 		}
 		
 		public void doAction() {
+			player = new Armor(player);
 			
 		}
 
-}*/
+}

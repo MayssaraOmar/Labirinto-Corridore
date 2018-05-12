@@ -23,7 +23,7 @@ public class KeyManager implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		keys[e.getKeyCode()] = true ;
-		System.out.println("Pressed");
+		//System.out.println("Pressed");
 		
 		
 	}

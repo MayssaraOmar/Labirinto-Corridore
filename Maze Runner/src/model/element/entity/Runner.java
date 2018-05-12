@@ -4,9 +4,16 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import controller.DefaultPlayerState;
 import controller.Game;
+import controller.PlayerState;
+import model.Armor;
 import model.Assets;
+import model.Bomb;
+import model.Gift;
+import model.HealthGift;
 import model.Maze;
+import model.element.Element;
 
 public class Runner extends Entity{
 	private static Runner uniqueRunner = null;	
@@ -17,7 +24,8 @@ public class Runner extends Entity{
 	private int health ;
 	private int score;
 	private int xMove,yMove;
-	private ArrayList<Integer> bullets;
+	private int bullets;
+	private PlayerState playerState;
 	
 	// singleton DP
 	public static Runner getRunner() {
@@ -27,11 +35,11 @@ public class Runner extends Entity{
 		
 	}
 	
-	private Runner(BufferedImage bufferedImage) {
+	protected Runner(BufferedImage bufferedImage) {
 		super(Assets.runner);
 		//this.game = game;
 		//maze = Maze.getMaze("maze.txt");
-		bullets = new ArrayList<Integer>(6);
+		bullets = 6;
 		health = 3;
 		velocity = 1;
 		score = 0;
@@ -39,15 +47,46 @@ public class Runner extends Entity{
 		height = 50;
 		xMove = 0;
 		yMove = 0;
+		playerState = new DefaultPlayerState(this);
 	//	RunnerImg = l mfrood n-get l image mn l spritesheet ely hn7mlha mn l game
 		
 	}	
 	
 	public void move() {
-		if(!checkEntityCollisions(xMove, 0))
-			moveX();
-		if(!checkEntityCollisions(0, yMove))
+		Element collided ;
+		
+		if( (collided = checkEntityCollisions(xMove, 0)) == null) {
+				moveX();
+		}
+			
+		else {
+			if(collided instanceof Gift || collided instanceof Bomb) {
+				
+				((Entity) collided).doAction();
+				System.out.println("Score"+score);
+				System.out.println("Health"+health);
+				System.out.println("Bullets"+bullets);				
+					removeElement(collided);
+			}else if(collided instanceof Armor) {
+				System.out.println(collided.getClass().toString());
+			}
+			
+		}
+		if((collided = checkEntityCollisions(0, yMove)) == null)
 			moveY();
+		
+		else {
+			if(collided instanceof Gift || collided instanceof Bomb) {
+				((Entity) collided).doAction();
+				System.out.println("Score"+score);
+				System.out.println("Health"+health);
+				System.out.println("Bullets"+bullets);				
+					removeElement(collided);
+			}else if(collided instanceof Armor) {
+				System.out.println(collided.getClass().toString());
+			}
+			
+		}
 	}
 	
 	public void moveX() {
@@ -80,7 +119,7 @@ public class Runner extends Entity{
 	}*/
 	
 	public void tick() {
-		System.out.println("TICK Runner\n");
+		//System.out.println("TICK Runner\n");
 
 		getMove();
 		move();
@@ -88,7 +127,7 @@ public class Runner extends Entity{
 	}
 	//getInput Move
 	public void getMove() {
-		System.out.println("GET MOOVE\n");
+		//System.out.println("GET MOOVE\n");
 		xMove = 0;
 		yMove = 0;
 	
@@ -138,11 +177,11 @@ public class Runner extends Entity{
 		this.score = score;
 	}
 
-	public ArrayList<Integer> getBullets() {
+	public int getBullets() {
 		return bullets;
 	}
 
-	public void setBullets(ArrayList<Integer> bullets) {
+	public void setBullets(int bullets) {
 		this.bullets = bullets;
 	}
 
