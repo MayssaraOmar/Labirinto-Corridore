@@ -15,8 +15,8 @@ public abstract class Entity extends Element {
 	//protected Rectangle bounds;
 	//protected int width=64,height=64;
 
-	public Entity(BufferedImage bufferedImage) {
-		this.bufferedImage = bufferedImage;
+	public Entity(/*BufferedImage bufferedImage*/) {
+		//this.bufferedImage = bufferedImage;
 		//mmkn n7dd width w height l kol entity seperately
 		//bounds = new Rectangle(0, 0, width, height);
 	}
