@@ -7,8 +7,6 @@ import java.awt.image.BufferStrategy;
 
 import model.Assets;
 import model.Maze;
-import model.tiles.Tile;
-import model.tiles.TilesFactory;
 import view.Display;
 
 public class Game implements Runnable {
@@ -19,7 +17,7 @@ public class Game implements Runnable {
 	private final int width = 2160;
 	private final int height = 2160;
 	private Display display;
-	//private KeyManager keyManager ;
+	private static KeyManager keyManager ;
 	private State gameState;
 	//private TilesFactory t= new TilesFactory();
 	//private Tile tt = t.getTile(0);
@@ -27,7 +25,7 @@ public class Game implements Runnable {
 	// private final double width = ;
 	public Game() {
 		running = false;
-		//keyManager  = new KeyManager();
+		keyManager  = new KeyManager();
 		
 	}
 
@@ -55,11 +53,13 @@ public class Game implements Runnable {
 	public void init() {
 		display = new Display(title, width, height);
 		Assets.init();
+		display.getFrame().addKeyListener(keyManager);
 		gameState = new GameState(this); 
-		//display.getFrame().addKeyListener(keyManager);
+		
 
 	}
 	private void tick() { // updates everything for the game (logic)
+		keyManager.tick();
 		gameState.tick();
 	}
 
@@ -76,17 +76,20 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//tt.render(g, 0, 0);
 		// test code
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, width, height);
 
 		gameState.render(g);
-
-		//g.drawImage(Assets.path, 100, 10, null);  		g.drawImage(Assets.stone, 400, 10, null);  
-
-
-		/*g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
-		g.drawImage(Assets.tree, 10, 10, null); 
-		g.drawImage(Assets.path, 200, 10, null);
-		*/
+		
+		g.drawImage(Assets.tree, 10, 10,64,64, null); 
+		g.drawImage(Assets.path, 100, 10, 64,64,null);
+		g.drawImage(Assets.stone, 200, 10,64,64, null);  
+		g.drawImage(Assets.bomb_0, 300, 10,64,64, null);
+		g.drawImage(Assets.bomb_1, 400, 10, 64,64,null);
+		g.drawImage(Assets.gift_health, 10, 100, 64,64,null);
+		g.drawImage(Assets.gift_score, 100, 100,64,64, null);
+		g.drawImage(Assets.shield_left, 200, 100,64,64, null);
+		g.drawImage(Assets.kunai, 300, 100,32,32, null);
 		bufferStrategy.show();
 		g.dispose();
 	}
@@ -96,7 +99,7 @@ public class Game implements Runnable {
 	@Override
 	public void run() {
 		init();
-
+		
 		int fps = 60; // frames per second a.k.a ticks per second a.k.a the number of times we want to call render() and tick() per second
 		double nsTimePerTick = 1000000000.0 / fps; // dividing 1000000000.0 nano second (1 second) by fps to get the time in nano second for one tick 
 		long lastTime = System.nanoTime();
@@ -129,7 +132,7 @@ public class Game implements Runnable {
 			}
 			*/
 			if (timer >= 1000000000) { // timer has passes another second 
-				System.out.println("ticks per second: " + tps);
+				//System.out.println("ticks per second: " + tps);
 				tps = 0;
 				timer = 0;
 			}
@@ -137,6 +140,11 @@ public class Game implements Runnable {
 		stop();
 	}
 
+	public static KeyManager getKeyManager() {
+		return keyManager;
+	}
+
+	
 	
 
 }
