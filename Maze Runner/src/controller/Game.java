@@ -76,18 +76,20 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//tt.render(g, 0, 0);
 		// test code
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, width, height);
 
 		gameState.render(g);
 		
-		//g.drawImage(Assets.runner, 100, 10, null);  
-		//g.drawImage(Assets.stone, 400, 10, null);  
-
-
-		/*g.setColor(Color.BLACK);
-		g.fillRect(0, 0, width, height);
-		g.drawImage(Assets.tree, 10, 10, null); 
-		g.drawImage(Assets.path, 200, 10, null);
-		*/
+		g.drawImage(Assets.tree, 10, 10,64,64, null); 
+		g.drawImage(Assets.path, 100, 10, 64,64,null);
+		g.drawImage(Assets.stone, 200, 10,64,64, null);  
+		g.drawImage(Assets.bomb_0, 300, 10,64,64, null);
+		g.drawImage(Assets.bomb_1, 400, 10, 64,64,null);
+		g.drawImage(Assets.gift_health, 10, 100, 64,64,null);
+		g.drawImage(Assets.gift_score, 100, 100,64,64, null);
+		g.drawImage(Assets.shield_left, 200, 100,64,64, null);
+		g.drawImage(Assets.kunai, 300, 100,32,32, null);
 		bufferStrategy.show();
 		g.dispose();
 	}

@@ -1,33 +1,29 @@
 package model;
 
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-
 import model.element.tile.TilesSpriteSheet;
 
 public class Assets {
 
-	// private static final int width = 72, height = 72;
-	private static final int width = 112, height = 128;
-	public static BufferedImage runner, stone, tree, path, gift, bomb, armor, gun, bullet, heart, money;
+	private static final int width = 112, height = 129;
+	public static BufferedImage  stone, tree, path, bomb_0,bomb_1, gift_score, gift_health, shield_left, shield_right, kunai;
 
 	public static BufferedImage[] runner_left_run, runner_right_run, runner_left_idle, runner_right_idle;
 
 	public static void init() {
-		/*
-		 * TilesSpriteSheet tilesSpriteSheet = new
-		 * TilesSpriteSheet(ImageLoader.loadImage("/tiles_spritesheet.png")); stone =
-		 * tilesSpriteSheet.crop(1*width, 4*height, width+3, height); tree =
-		 * tilesSpriteSheet.crop(11*width+3,11*height+3 + height/2, 50, height); path =
-		 * tilesSpriteSheet.crop(8*width+3, 11*height+3, width, height);
-		 */
 
 		TilesSpriteSheet tilesSpriteSheet = new TilesSpriteSheet(ImageLoader.loadImage("/alltiles_sheet.png"));
-		stone = tilesSpriteSheet.crop(0 * width, 4 * height + 4, width, height);
-
-		tree = tilesSpriteSheet.crop(width, 11 * height, width, height);
-		path = tilesSpriteSheet.crop(3 * width, 0 * height, width, height);
-		runner = tilesSpriteSheet.crop(3 * width, 1 * height, width, height);
+		stone = tilesSpriteSheet.crop(0 * width, 4 * height, width, height);
+		tree = tilesSpriteSheet.crop(1 * width, 14 * height, width, height);
+		// path = tilesSpriteSheet.crop(3 * width, 0 * height, width, height);
+		path = tilesSpriteSheet.crop(6 * width, 13 * height, width, height);
+		bomb_0= tilesSpriteSheet.crop(8 * width, 14 * height, width, height);
+		bomb_1= tilesSpriteSheet.crop(5 * width, 11 * height, width, height);
+		gift_health= tilesSpriteSheet.crop(7 * width, 13 * height, width, height);
+		gift_score= tilesSpriteSheet.crop(4 * width, 3 * height, width, height);
+		shield_left = ImageLoader.loadImage("/shield/left.png");
+		kunai = ImageLoader.loadImage("/kunai.png");
+		// runner animations
 
 		runner_left_run = new BufferedImage[10];
 		runner_right_run = new BufferedImage[10];

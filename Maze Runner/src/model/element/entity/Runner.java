@@ -15,8 +15,6 @@ public class Runner extends Entity {
 	private Animation animRunLeft, animRunRight, animIdleRight, animIdleLeft;
 	private static Runner uniqueRunner = null;
 	// n7ot-ha tb3 state l health
-	// private Game game;
-	// private Maze maze;
 	private int velocity;
 	private int health;
 	private int score;
@@ -26,13 +24,12 @@ public class Runner extends Entity {
 	// singleton DP
 	public static Runner getRunner() {
 		if (uniqueRunner == null)
-			uniqueRunner = new Runner(Assets.runner);
+			uniqueRunner = new Runner();
 		return uniqueRunner;
 
 	}
 
-	private Runner(BufferedImage bufferedImage) {
-		// super(Assets.runner);
+	private Runner() {
 		super();
 		animRunLeft = new Animation(500, Assets.runner_left_run);
 		animRunRight = new Animation(500, Assets.runner_right_run);

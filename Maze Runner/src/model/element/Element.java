@@ -11,17 +11,21 @@ public abstract class Element {
 	
 	protected Point point;
 	protected Rectangle bounds;
-	protected int width=64,height=64;
+	protected int width=64, height=64;
 	public Element() {
 		bounds = new Rectangle(0, 0, width, height);
-
 	}
 
 	public abstract void tick();
 	public abstract void render (Graphics g);
 	
-	public abstract Point getPoint();
-	public abstract void setPoint(Point point);
+	public Point getPoint() {
+		return point;
+	}
+	public void setPoint(Point point) {
+		this.point = point;
+		
+	}
 	
 	public boolean checkEntityCollisions(int xOffset, int yOffset) {
 		Point p = Maze.toGrid(point.x, point.y);
