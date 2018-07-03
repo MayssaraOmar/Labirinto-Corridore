@@ -1,24 +1,33 @@
 package model;
 
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import model.element.entity.Entity;
 import model.element.entity.Runner;
+import model.element.tile.Tile;
 
-public class Gift extends Entity{
+public abstract class Gift extends Entity{
+	protected Runner player;
+	protected BufferedImage image;	
 	
-		protected Runner player;
+		public Gift(BufferedImage img) {			
+			super();
+			player = Runner.getRunner();
+			image = img;
+			
+		}
 		
-		public Gift(Point p, BufferedImage img) {
-			super(img,10,10, p);
-			player = Runner.getRunner(null);
-			
-		}
-
 		@Override
-		public void tick() {
-			// TODO Auto-generated method stub
+		public void render(Graphics g) {
+			g.drawImage(image, point.x, point.y, Tile.TILEWIDTH , Tile.TILEHEIGHT,  null);
 			
 		}
+		
+		public boolean isDestroyable() {
+			return true;
+		}
+	
+	
 }

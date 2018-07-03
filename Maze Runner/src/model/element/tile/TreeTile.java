@@ -1,16 +1,19 @@
 package model.element.tile;
 
-import java.awt.Point;
-
 import model.Assets;
 
 public class TreeTile extends Tile{
-	public TreeTile(Point p) {
-		super(Assets.tree,p);
+	public TreeTile() {
+		super(Assets.tree);
+		ID = 2;
 	}
 
 	@Override
 	public boolean isSolid() {	
 		return true;
 	}
+	public boolean isDestroyable() {
+		return true;
+	}
+	
 }

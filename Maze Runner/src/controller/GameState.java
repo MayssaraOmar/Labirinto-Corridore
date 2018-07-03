@@ -1,27 +1,41 @@
 package controller;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.util.ArrayList;
 
 import model.Maze;
+import model.SaveAndLoad;
 import model.element.Element;
-import model.element.tile.PathTile;
-import model.element.tile.Tile;
 
 public class GameState extends State{
 
 	
 	private Maze maze;
+	public static GameState uniqueGameState = null;
 	public static ArrayList<Element> elements = new ArrayList<>();
 	
-	public GameState(Game game) {
+	private GameState(Game game) {
+		super(game);		
+		//int [][] elementsFile = SaveAndLoad.loadFile("maze.txt");
+		//maze = Maze.getMaze(elementsFile);
 
-		super(game);
-		maze = Maze.getMaze("maze.txt");
+	}
+	public static GameState getGameState(Game game) {
+		if(uniqueGameState == null) {
+			uniqueGameState = new GameState(game);
+						
+		}return uniqueGameState;
+
 		
 	}
+	
+/*	public GameState(Game game) {
+		super(game);		
+		//int [][] elementsFile = SaveAndLoad.loadFile("maze.txt");
+		//maze = Maze.getMaze(elementsFile);
 
+	}
+*/
 	@Override
 	public void tick() {
 		maze.tick();
@@ -31,19 +45,13 @@ public class GameState extends State{
 	public void render(Graphics g) {
 		maze.render(g);
 	}
-//TODO Mazewidth
-	 public static Tile getTile(int x, int y) { if (x < 0 || y < 0 || x >= 30 ||
-			  y >= 30) { return new PathTile(new Point(0,0)); } 
-			  Tile t = null;
-			  for(int i=0;i<GameState.elements.size();i++) {
-				  if(GameState.elements.get(i).getPoint().x == x && GameState.elements.get(i).getPoint().y == y ) {
-					    t = (Tile) GameState.elements.get(i);
-				  }
-			  }	  
-			
-			  if (t == null) return new PathTile(new Point(0,0));
-			  return t;
-			  
-			  }
+
+	public void load(String path) {	
+		System.out.println("DDDDDDDDDDDDDd");
+		int [][] elementsFile = SaveAndLoad.loadFile(path);
+		maze = Maze.getMaze();
+	//	maze = new Maze(elementsFile);
+	}
+	
 	
 }

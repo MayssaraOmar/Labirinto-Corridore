@@ -1,11 +1,14 @@
 package model.element;
 
-import java.awt.Point;
-
+import model.ArmorGift;
 import model.Armor;
 import model.BulletGift;
+import model.Checkpoint;
+import model.DeathBomb;
+import model.DefaultBomb;
 import model.HealthGift;
 import model.ScoreGift;
+import model.element.entity.Prize;
 import model.element.entity.Runner;
 import model.element.tile.PathTile;
 import model.element.tile.StoneTile;
@@ -13,26 +16,33 @@ import model.element.tile.TreeTile;
 
 public class ElementFactory {
 
-	public static Element getElement(int type,Point p) {
+	public static Element getElement(int type) {
 
 		if (type == 0)
-			return new PathTile(p);
+			return new PathTile();
 		else if (type == 1)
-			return new StoneTile(p);
+			return new StoneTile();
 		else if (type == 2)
-			return new TreeTile(p);
+			return new TreeTile();
 		else if (type == 3)
-			return Runner.getRunner(p);
-		else if(type == 4)
-			return new HealthGift(p);
-		else if(type == 5)
-			return new BulletGift(p);
-		else if(type == 6)
-			return new Armor(p);
-		else if(type == 5)
-			return new ScoreGift(p);
-		
-		return new PathTile(p); // default tile
+			return Runner.getRunner();
+		else if (type == 4) 
+			return new HealthGift();
+		else if (type == 5)		
+			return new BulletGift();			
+		else if (type == 6)
+			return new ArmorGift();
+		else if (type == 7)
+			return new ScoreGift();
+		else if (type == 8)
+			return new DefaultBomb();
+		else if (type == 9)
+			return new DeathBomb();		
+		else if (type == 10)
+			return new Checkpoint();	
+		else if (type == 11)
+			return  Prize.getPrize();	
+		return new PathTile(); // default tile
 
 	}
 

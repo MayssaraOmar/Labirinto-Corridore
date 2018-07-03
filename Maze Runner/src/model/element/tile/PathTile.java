@@ -1,17 +1,18 @@
 package model.element.tile;
 
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import model.Assets;
 
 public class PathTile extends Tile{
-	public PathTile(Point p) {
+	public PathTile() {
 		
-		super(Assets.path,p);
+		super(Assets.path);
+		ID = 0;
+		
+		//System.out.println(Assets.path+" path");
 
-			}
-
+	}
 
 	@Override
 	public boolean isSolid() {
