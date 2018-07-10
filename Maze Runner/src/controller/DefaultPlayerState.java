@@ -6,18 +6,23 @@ import model.element.entity.Runner;
 
 public class DefaultPlayerState extends PlayerState{
 		
-	public DefaultPlayerState(Runner player) {
-		super(player);
-		player.changeState(this);
+	public DefaultPlayerState() {
+		super();
+		//player.changeState(this);
 		}
 
 	public void hitBomb(Bomb bomb) {
 		
-		if(bomb instanceof DefaultBomb)
-			player.setHealth(player.getHealth()-1);
-		else
-			player.setHealth(0);
-	}
-
+		if(Runner.getRunner().getHealth() == 1)
+			Runner.getRunner().dead();
+			else {
+			if(bomb instanceof DefaultBomb) {			
+			Runner.getRunner().setHealth(Runner.getRunner().getHealth()-1);
+			}else
+			Runner.getRunner().setHealth(0);
+			}
+		}
+		
+		
 	
 }

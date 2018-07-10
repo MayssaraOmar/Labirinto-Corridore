@@ -8,12 +8,14 @@ public class Memento {
 	private int score;
 	private int bullets;
 	private Point position;
+	private int health ;
 	
-	public Memento(int score,int bullets,Point position )
+	public Memento(int score,int bullets,Point position,int health )
 	{
-		this.score=score;
+		this.score=score ;
 		this.bullets=bullets;
 		this.position = position;
+		this.health = health;
 		
 	}
 	public int getScore() {
@@ -33,6 +35,12 @@ public class Memento {
 	}
 	public void setPosition(Point position) {
 		this.position = position;
+	}
+	public int getHealth() {
+		return health;
+	}
+	public void setHealth(int health) {
+		this.health = health;
 	}
 	
 	

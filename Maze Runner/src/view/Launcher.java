@@ -19,6 +19,7 @@ public class Launcher {
 			public void run() {
 				try {
 					Game game = new Game();
+					
 					game.start();
 										
 				} catch (Exception e) {

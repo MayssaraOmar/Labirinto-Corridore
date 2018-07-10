@@ -6,6 +6,7 @@ public class StoneTile extends Tile {
 
 	public StoneTile() {
 		super(Assets.stone);
+		ID  =1;
 	}
 
 	@Override
