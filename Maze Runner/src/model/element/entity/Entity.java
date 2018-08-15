@@ -4,15 +4,17 @@ package model.element.entity;
 
 import model.element.Element;
 
-public abstract class Entity extends Element {
+public abstract class Entity extends Element {	
 
 	public Entity() {
-		super();
-	}
+		super();}
 	
 
 	public void doAction() {	
 		
 	}
 
+	
+	
+	
 }

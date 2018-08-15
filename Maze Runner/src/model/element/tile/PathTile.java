@@ -8,6 +8,7 @@ public class PathTile extends Tile{
 	public PathTile() {
 		
 		super(Assets.path);
+		ID = 0;
 		
 		//System.out.println(Assets.path+" path");
 

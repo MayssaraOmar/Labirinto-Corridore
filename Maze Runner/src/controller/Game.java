@@ -3,13 +3,17 @@ package controller;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferStrategy;
-
 import model.Assets;
+import model.Bullet;
 import model.Maze;
+import model.element.entity.Runner;
+import sun.util.resources.cldr.ro.TimeZoneNames_ro;
 import view.Display;
+import view.InfoPanel;
 
-public class Game implements Runnable {
+public class Game  implements Runnable {
 
 	private final String title = "Maze Runner";
 	private Thread thread;
@@ -19,14 +23,19 @@ public class Game implements Runnable {
 	private Display display;
 	private static KeyManager keyManager ;
 	private State gameState;
-	//private TilesFactory t= new TilesFactory();
-	//private Tile tt = t.getTile(0);
-	
-	// private final double width = ;
+	private Observer timerObserver;
+	private long time;
+	private Timer myTimer;
+	private boolean paused;
+		
 	public Game() {
 		running = false;
-		keyManager  = new KeyManager();
-		
+		paused = false;
+		keyManager  = new KeyManager();		
+		timerObserver = (Observer) new TimeObserver();
+		time = 0;
+		myTimer = new Timer();
+	//	timerObserver.add(this);
 	}
 
 	public synchronized void start() { //synchronized is used whenever we directly work with threads 
@@ -36,7 +45,6 @@ public class Game implements Runnable {
 		thread = new Thread(this); // make a new thread which makes this part of the program (this class) runs separately from the rest of the program 
 		thread.start(); // start starts the thread and calls the run method bellow
 
-		
 	}
 
 	public synchronized void stop() { //synchronized is used whenever we directly work with threads 
@@ -54,8 +62,10 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		Assets.init();
 		display.getFrame().addKeyListener(keyManager);
-		gameState = new GameState(this); 
-		
+		gameState = GameState.getGameState(this); 
+		((GameState)gameState).load("maze.txt");
+		Runner.getRunner().addGame(this);
+		InfoPanel.getPanel().addGame(this);
 
 	}
 	private void tick() { // updates everything for the game (logic)
@@ -76,22 +86,23 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//tt.render(g, 0, 0);
 		// test code
-		g.setColor(Color.BLACK);
+	/*	g.setColor(Color.BLACK);
 		g.fillRect(0, 0, width, height);
-
+*/
 		gameState.render(g);
+		System.out.println("trying stop");
 		
-		g.drawImage(Assets.tree, 10, 10,64,64, null); 
-		g.drawImage(Assets.path, 100, 10, 64,64,null);
-		g.drawImage(Assets.stone, 200, 10,64,64, null);  
-		g.drawImage(Assets.bomb_0, 300, 10,64,64, null);
-		g.drawImage(Assets.bomb_1, 400, 10, 64,64,null);
-		g.drawImage(Assets.gift_health, 10, 100, 64,64,null);
-		g.drawImage(Assets.gift_score, 100, 100,64,64, null);
-		g.drawImage(Assets.shield_left, 200, 100,64,64, null);
-		g.drawImage(Assets.kunai, 300, 100,32,32, null);
+	/*		
+		Bullet jo = new Bullet(new Point(100,10), 2);
+		for(int i=0;i<100;i++) {
+				jo.tick();
+		jo.render(g);
+		
+		}
+	*/
 		bufferStrategy.show();
 		g.dispose();
+		
 	}
 	
 
@@ -132,7 +143,12 @@ public class Game implements Runnable {
 			}
 			*/
 			if (timer >= 1000000000) { // timer has passes another second 
-				//System.out.println("ticks per second: " + tps);
+				//System.out.println("ticks per second: " + tps);	
+				if(!paused) {time++;
+				myTimer.updateTime();								
+				}
+				
+								
 				tps = 0;
 				timer = 0;
 			}
@@ -144,7 +160,30 @@ public class Game implements Runnable {
 		return keyManager;
 	}
 
+	public  void gameOver() {
+		InfoPanel.getPanel().setGameEnd("You lost !!!");
+		stop();		
+	}
+	public void gameWon() {
+		
+		
+		InfoPanel.getPanel().setGameEnd("You won !!!");
+		stop();	
+	}
 	
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;		
+		
+	}
+
+	public Timer getMyTimer() {
+		return myTimer;
+	}
+
+	public void setMyTimer(Long l) {
+		 myTimer.setSec(l);
+	}
 	
 
 }

@@ -29,6 +29,8 @@ public  class Tile extends Element{
 		return true;
 	}
 
-	
+	public boolean isDestroyable() {
+		return false;
+	}
 
 }
