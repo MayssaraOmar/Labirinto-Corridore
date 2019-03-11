@@ -2,6 +2,7 @@ package controller;
 
 import model.Bomb;
 import model.DefaultBomb;
+import model.element.entity.Info;
 import model.element.entity.Runner;
 
 public class DefaultPlayerState extends PlayerState{
@@ -13,13 +14,13 @@ public class DefaultPlayerState extends PlayerState{
 
 	public void hitBomb(Bomb bomb) {
 		
-		if(Runner.getRunner().getHealth() == 1)
+		if(Info.getInfo().getHealth() == 1)
 			Runner.getRunner().dead();
 			else {
 			if(bomb instanceof DefaultBomb) {			
-			Runner.getRunner().setHealth(Runner.getRunner().getHealth()-1);
+				Info.getInfo().setHealth(Info.getInfo().getHealth()-1);
 			}else
-			Runner.getRunner().setHealth(0);
+			Info.getInfo().setHealth(0);
 			}
 		}
 		

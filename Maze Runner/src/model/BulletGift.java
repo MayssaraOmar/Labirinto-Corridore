@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import model.element.entity.Info;
 import model.element.tile.Tile;
 
 public class BulletGift extends Gift{
@@ -14,7 +15,7 @@ public class BulletGift extends Gift{
 	}
 
 	public void doAction() {
-		player.setBullets(player.getBullets()+1);
+		Info.getInfo().setBullets(Info.getInfo().getBullets()+1);
 	}
 
 	@Override

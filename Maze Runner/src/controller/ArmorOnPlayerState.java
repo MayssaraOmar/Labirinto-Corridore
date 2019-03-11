@@ -4,6 +4,7 @@ import model.Armor;
 import model.Bomb;
 import model.DeathBomb;
 import model.DefaultBomb;
+import model.element.entity.Info;
 import model.element.entity.Runner;
 
 public class ArmorOnPlayerState extends PlayerState {
@@ -15,14 +16,14 @@ public class ArmorOnPlayerState extends PlayerState {
 	}
 
 	public void hitBomb(Bomb bomb) {
-		if(Runner.getRunner().getHealth() == 1)
+		if(Info.getInfo().getHealth() == 1)
 			Runner.getRunner().dead();
 		 else {
 			if (bomb instanceof DefaultBomb) {
 				Runner.getRunner().changeState(new DefaultPlayerState());
 
 			} else if (bomb instanceof DeathBomb) {
-				Runner.getRunner().setHealth(0);
+				Info.getInfo().setHealth(0);
 			}
 		}
 	}

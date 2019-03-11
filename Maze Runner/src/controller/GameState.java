@@ -47,7 +47,6 @@ public class GameState extends State{
 	}
 
 	public void load(String path) {	
-		System.out.println("DDDDDDDDDDDDDd");
 		int [][] elementsFile = SaveAndLoad.loadFile(path);
 		maze = Maze.getMaze();
 	//	maze = new Maze(elementsFile);

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import model.element.entity.Info;
+
 public class HealthGift extends Gift{
 
 
@@ -15,8 +17,8 @@ public class HealthGift extends Gift{
 	}
 	
 	public void doAction() {		
-		player.setHealth(player.getHealth()+1);
-		player.setScore(player.getScore()+20);
+		Info.getInfo().setHealth(Info.getInfo().getHealth()+1);
+		Info.getInfo().setScore(Info.getInfo().getScore()+20);
 	}
 
 	@Override

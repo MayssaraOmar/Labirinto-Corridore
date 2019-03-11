@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import model.element.Element;
+import model.element.entity.Info;
 import model.element.entity.Runner;
 
 public class CareTaker {
@@ -19,7 +20,7 @@ public class CareTaker {
 	}
 	
 	public void saveCheckpoint () {
-		history.add(new Memento(Runner.getRunner().getScore(),Runner.getRunner().getBullets(),Runner.getRunner().getPoint(),Runner.getRunner().getHealth()));
+		history.add(new Memento(Info.getInfo().getScore(),Info.getInfo().getBullets(),Runner.getRunner().getPoint(),Info.getInfo().getHealth()));
 	}
 	
 	

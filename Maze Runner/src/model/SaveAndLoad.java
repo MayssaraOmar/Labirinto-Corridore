@@ -17,6 +17,7 @@ import controller.ScoreObserver;
 import controller.Utils;
 import model.element.Element;
 import model.element.ElementFactory;
+import model.element.entity.Info;
 import model.element.entity.Runner;
 import model.element.tile.Tile;
 
@@ -26,9 +27,10 @@ public class SaveAndLoad {
 
 		int elementsTypes[][] = null;
 		try {
-			Observer bulletObs = new BulletObserver();
-			Observer scoreObs = new ScoreObserver();
-			Observer healthObs = new HealthObserver();
+			Observer bulletObs = new BulletObserver(Info.getInfo());			
+			Observer scoreObs = new ScoreObserver(Info.getInfo());
+			Observer healthObs = new HealthObserver(Info.getInfo());
+			Info.getInfo().initializePanel();
 			
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
 			String line;
@@ -58,9 +60,9 @@ public class SaveAndLoad {
 					currentRow++;
 				} else {
 
-					Runner.getRunner().setScore(Integer.parseInt(tokens[0]));
-					Runner.getRunner().setBullets(Integer.parseInt(tokens[1]));
-					Runner.getRunner().setHealth(Integer.parseInt(tokens[2]));
+					Info.getInfo().setScore(Integer.parseInt(tokens[0]));
+					Info.getInfo().setBullets(Integer.parseInt(tokens[1]));
+					Info.getInfo().setHealth(Integer.parseInt(tokens[2]));
 					Runner.getRunner()
 							.setPointFile(new Point(Integer.parseInt(tokens[3]), Integer.parseInt(tokens[4])));
 					//System.out.println(Long.parseLong(tokens[5]));
@@ -68,10 +70,7 @@ public class SaveAndLoad {
 					
 				}
 			}
-
-			scoreObs.update(Runner.getRunner().getScore());
-			healthObs.update(Runner.getRunner().getHealth());
-			bulletObs.update(Runner.getRunner().getBullets());
+			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -121,7 +120,7 @@ public class SaveAndLoad {
 				printWriter.println();
 			}
 			
-			line = Runner.getRunner().getScore() + " " + Runner.getRunner().getBullets() + " " + Runner.getRunner().getHealth()
+			line = Info.getInfo().getScore() + " " +Info.getInfo().getBullets() + " " +Info.getInfo().getHealth()
 					+ " " + Runner.getRunner().getPointFile().x + " " + Runner.getRunner().getPointFile().y;
 					;
 			printWriter.print(line);

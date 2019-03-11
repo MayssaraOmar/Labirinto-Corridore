@@ -37,20 +37,20 @@ import model.element.tile.Tile;
 
 
 
-public class Runner extends Entity implements Observable {
+public class Runner extends Entity  {
 	private Animation animRunLeft, animRunRight, animIdleRight, animIdleLeft, animDeadLeft, animDeadRight, animAttackLeft, animAttackRight;
 	private static Runner uniqueRunner = null;
 	// n7ot-ha tb3 state l health
 	private int velocity;
-	private int health;
+	/*private int health;
 	private int score;
-	private int xMove, yMove, direction;
-	private PlayerState playerState,defaultState;
 	private int bullets;
+	*/private int xMove, yMove, direction;
+	private PlayerState playerState,defaultState;
 	private CareTaker careTaker;
 	private Bullet kinai;
 	private Game game;
-	private Observer healthObs,scoreObs,bulletObs;
+//	private Observer healthObs,scoreObs,bulletObs;
 	private boolean paused;
 	private boolean die = false;
 	
@@ -80,34 +80,34 @@ public class Runner extends Entity implements Observable {
 		paused = false;
 		playerState = defaultState;	
 		ID = 3;
-		bullets = 6;
+		
+	/*	bullets = 6;
 		health = 3;
-		velocity = 1;
 		score = 0;
+		*/velocity = 1;
 		width = 50;
 		height = 50;
 		xMove = 0;
 		yMove = 0;
 		direction = 2;
 		careTaker = new CareTaker();
-		bulletObs = new BulletObserver();
+/*		bulletObs = new BulletObserver();
 		scoreObs = new ScoreObserver();
 		healthObs = new HealthObserver();
-		
+	*/	
 	//	RunnerImg = l mfrood n-get l image mn l spritesheet ely hn7mlha mn l game
 		
-	}		
+	}	
+	
 	public void changeState(PlayerState state) {
-		playerState = state;
-		
+		playerState = state;		
 	}
 	
 	public void move() {
 		Element collided ;
 		boolean moved = false;
 		if( (collided = checkEntityCollisions(xMove, 0)) == null) {
-				moveX();
-				
+				moveX();				
 		}else {
 			if(collided instanceof Gift || collided instanceof Bomb) {
 				
@@ -125,10 +125,10 @@ public class Runner extends Entity implements Observable {
 				game.gameWon();
 			}
 			
-			scoreObs.update(score);
+	/*		scoreObs.update(score);
 			healthObs.update(health);
 			bulletObs.update(bullets);
-		}
+		*/}
 		if((collided = checkEntityCollisions(0, yMove)) == null) {
 			moveY();
 		}else {
@@ -148,12 +148,12 @@ public class Runner extends Entity implements Observable {
 				careTaker.saveCheckpoint();				
 				removeElement(collided);
 			}
-			scoreObs.update(score);
+	/*		scoreObs.update(score);
 			healthObs.update(health);
 			bulletObs.update(bullets);
-			
+		*/	
 		}
-		if(health == 0) {
+		if(Info.getInfo().getHealth() == 0) {
 			dead();
 		}
 		
@@ -166,7 +166,7 @@ public class Runner extends Entity implements Observable {
 	}
 
 	public void moveY() {
-		// point.y += yMove;
+		
 		Point p = Utils.toGrid(point.x, point.y);
 		p.y += yMove;
 		setPoint(Utils.toIso(p.x, p.y));
@@ -205,7 +205,7 @@ public class Runner extends Entity implements Observable {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), point.x, point.y, Tile.TILEWIDTH, Tile.TILEHEIGHT, null);
 		
-		if(playerState.getClass().toString().contains("ArmorOnPlayerState")) {System.out.println("hi");
+		if(playerState.getClass().toString().contains("ArmorOnPlayerState")) {
 			g.drawImage(Assets.shield_left, point.x, point.y, Tile.TILEWIDTH, Tile.TILEHEIGHT, null);
 		}
 		
@@ -260,8 +260,8 @@ public class Runner extends Entity implements Observable {
 		
 		}else if(Game.getKeyManager().fire) {
 			
-			if(bullets >0 && direction != 0) {
-				bullets --;
+			if(Info.getInfo().getBullets() >0 && direction != 0) {
+				Info.getInfo().setBullets(Info.getInfo().getBullets()-1);
 			kinai = new Bullet(point, direction);
 			kinai.fire();
 			GameState.elements.add(kinai);			
@@ -273,7 +273,7 @@ public class Runner extends Entity implements Observable {
 	}
 	
 	public void dead() {
-		setHealth(0);
+		Info.getInfo().setHealth(0);
 		if(careTaker.getHistory().size() == 0) {
 			die=true;			
 			game.gameOver();
@@ -281,9 +281,9 @@ public class Runner extends Entity implements Observable {
 		}else {
 			Memento current = null;			
 			current = Runner.getRunner().getCareTaker().restoreCheckpoint();
-				setBullets(current.getBullets());
-				setHealth(current.getHealth());
-				setScore(current.getScore());
+				Info.getInfo().setBullets(current.getBullets());
+				Info.getInfo().setHealth(current.getHealth());
+				Info.getInfo().setScore(current.getScore());
 				setPoint(current.getPosition());
 				tick();
 				
@@ -297,7 +297,7 @@ public class Runner extends Entity implements Observable {
 	public void setVelocity(int velocity) {
 		this.velocity = velocity;
 	}
-
+/*
 	public int getHealth() {
 		return health;
 	}
@@ -322,7 +322,7 @@ public class Runner extends Entity implements Observable {
 	public void setBullets(int bullets) {
 		this.bullets = bullets;
 	}
-
+*/
 	public PlayerState getPlayerState() {
 		return playerState;
 	}
@@ -357,21 +357,6 @@ public class Runner extends Entity implements Observable {
 	}
 
 	
-	
-	@Override
-	public void addListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void removeListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void notifyObservers() {
-		
-	}
 	
 	}

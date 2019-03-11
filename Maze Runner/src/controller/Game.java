@@ -90,7 +90,7 @@ public class Game  implements Runnable {
 		g.fillRect(0, 0, width, height);
 */
 		gameState.render(g);
-		System.out.println("trying stop");
+	//	System.out.println("trying stop");
 		
 	/*		
 		Bullet jo = new Bullet(new Point(100,10), 2);

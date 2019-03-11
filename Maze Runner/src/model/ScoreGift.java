@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import model.element.entity.Info;
+
 public class ScoreGift extends Gift{
 
 	
@@ -15,7 +17,7 @@ public class ScoreGift extends Gift{
  	}
  	
  	public void doAction() {		
- 		player.setScore(player.getScore()+10);
+ 		Info.getInfo().setScore(Info.getInfo().getScore()+10);
  		
  	}
 
